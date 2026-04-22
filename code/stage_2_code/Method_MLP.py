@@ -12,19 +12,29 @@ class Method_MLP(method, nn.Module):
     def __init__(self, mName, mDescription):
         method.__init__(self, mName, mDescription)
         nn.Module.__init__(self)
-        self.fc_layer_1 = nn.Linear(784, 256)
-        self.activation_func_1 = nn.ReLU()
-        self.fc_layer_2 = nn.Linear(256, 10)
+        self.fc_layer_1 = nn.Linear(784, 512)
+        self.activation_func_1 = nn.LeakyReLU()
+        self.dropout = nn.Dropout(0.2)
+        self.fc_layer_2 = nn.Linear(512, 256)
+        self.activation_func_2 = nn.LeakyReLU()
+        self.fc_layer_3 = nn.Linear(256, 128)
+        self.activation_func_3 = nn.LeakyReLU()
+        self.fc_layer_4 = nn.Linear(128, 10)
         self.loss_list = []
         self.accuracy_list = []
 
     def forward(self, x):
         h = self.activation_func_1(self.fc_layer_1(x))
-        y_pred = self.fc_layer_2(h)
+        h = self.dropout(h)
+        h1 = self.activation_func_2(self.fc_layer_2(h))
+        h1 = self.dropout(h1)
+        h2 = self.activation_func_3(self.fc_layer_3(h1))
+        h2 = self.dropout(h2)
+        y_pred = self.fc_layer_4(h2)
         return y_pred
 
     def train(self, X, y):
-        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate, momentum=0.9) 
         loss_function = nn.CrossEntropyLoss()
         accuracy_evaluator = Evaluate_Accuracy('training evaluator', '')
 

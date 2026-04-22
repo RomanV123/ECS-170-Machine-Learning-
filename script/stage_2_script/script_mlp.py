@@ -54,7 +54,7 @@ if 1:
     plt.title('MLP Training Loss')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
-    plt.savefig('result/stage_2_result/MLP_training_loss.png')
+    plt.savefig('result/stage_2_result/MLP_training_loss_SGD.png')
     plt.clf()
 
 
@@ -62,6 +62,6 @@ if 1:
     plt.title('MLP Training Accuracy')
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
-    plt.savefig('result/stage_2_result/MLP_training_accuracy.png')
+    plt.savefig('result/stage_2_result/MLP_training_accuracy_SGD.png')
     plt.clf()
 
