@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+.vscode/
+.DS_Store
+data/stage_2_data/train.csv
+data/stage_2_data/test.csv
+*.csv
+result/stage_1_result/*_prediction_result_*
+result/stage_2_result/prediction_result_*
